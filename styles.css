@@ -1,0 +1,68 @@
+:root{
+  --bg:#0b1020;
+  --panel:#121a35;
+  --text:#e9f0ff;
+  --muted:#9bb0e0;
+  --accent:#5dd6a4;
+  --accent-2:#7aa2ff;
+  --danger:#ff7575;
+  --coin:#f6c945;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  font-size:18px;
+  color:var(--text); background:radial-gradient(1200px 600px at 10% -10%,#1c2660 0%,transparent 60%),linear-gradient(180deg,#0b1020 0%,#0b0f1d 100%);
+}
+
+.app-header{
+  display:flex; align-items:center; justify-content:space-between; padding:16px 20px; border-bottom:1px solid rgba(255,255,255,.08);
+}
+.app-header h1{font-family:"Press Start 2P", monospace; font-size:22px; letter-spacing:1px; margin:0}
+.coins{background:rgba(246,201,69,.15); color:#000; font-weight:800; color:#1b1500; padding:8px 12px; border-radius:10px; box-shadow:inset 0 0 0 2px var(--coin)}
+
+.layout{display:grid; gap:20px; padding:20px; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); max-width:1400px; margin:0 auto}
+.panel{background:var(--panel); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:20px; box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.panel h2{margin:0 0 14px 0; font-size:18px; font-weight:800}
+
+.avatar{height:220px; display:flex; align-items:center; justify-content:center; background:linear-gradient(180deg,#1a2450,#0f1532); border-radius:12px; border:1px solid rgba(255,255,255,.06); position:relative}
+.avatar-face{font-size:96px}
+
+.row{display:flex; gap:10px; flex-wrap:wrap}
+label{display:flex; flex-direction:column; gap:6px; font-size:14px; color:var(--muted)}
+input{background:#0c1330; border:1px solid rgba(255,255,255,.1); color:var(--text); padding:12px 14px; border-radius:10px; min-width:200px}
+
+.btn{background:linear-gradient(180deg,var(--accent),#3bbd8f); color:#00130c; font-weight:800; border:none; padding:12px 16px; border-radius:10px; cursor:pointer}
+.btn.small{padding:10px 12px; font-size:13px}
+.btn:disabled{opacity:.5; cursor:not-allowed}
+
+.bar{height:18px; background:#0b1435; border:1px solid rgba(255,255,255,.1); border-radius:999px; overflow:hidden; box-shadow:inset 0 2px 8px rgba(0,0,0,.4)}
+.bar-fill{height:100%; width:0%; transition:width .35s ease; background:linear-gradient(90deg,var(--accent-2),#52e3c2)}
+.budget-bar .bar-fill.ok{background:linear-gradient(90deg,#75ffb2,#2ad38b)}
+.budget-bar .bar-fill.warn{background:linear-gradient(90deg,#ffd275,#ff9f43)}
+.budget-bar .bar-fill.bad{background:linear-gradient(90deg,#ff8a8a,#ff4d4d)}
+
+.level-row{display:flex; align-items:center; gap:12px; margin-top:14px}
+#levelLabel{font-weight:800}
+
+.hint{color:var(--muted); font-size:13px; margin-top:8px}
+
+.list{list-style:none; padding:0; margin:10px 0 0 0; display:flex; flex-direction:column; gap:10px}
+.quest-item{display:grid; grid-template-columns:1fr auto; gap:12px; align-items:center; background:#0c1330; border:1px solid rgba(255,255,255,.08); padding:12px; border-radius:10px}
+.quest-top{display:flex; flex-direction:column}
+.quest-name{font-weight:800}
+.quest-controls{display:flex; align-items:center; gap:8px}
+.quest-controls input{width:110px}
+.quest-badge{font-size:12px; color:#111; background:linear-gradient(180deg,#ffe98a,#f6c945); padding:2px 6px; border-radius:6px}
+
+.streak-row{display:grid; grid-template-columns:repeat(7,1fr); gap:8px; margin:10px 0}
+.streak-dot{height:22px; border-radius:6px; background:#0c1330; border:1px solid rgba(255,255,255,.1)}
+.streak-dot.on{background:linear-gradient(180deg,#a2ff80,#59e884)}
+
+.app-footer{padding:12px 16px; text-align:center; color:var(--muted)}
+
+/* Press Start headings on panels */
+.avatar-panel h2,.budget-panel h2,.quests-panel h2,.streak-panel h2{font-family:"Press Start 2P", monospace; font-size:16px}
+
+

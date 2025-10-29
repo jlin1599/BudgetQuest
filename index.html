@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Budget Quest - Prototype</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <h1>Budget Quest</h1>
+      <div class="coins" id="coins">🪙 0</div>
+    </header>
+
+    <main class="layout">
+      <section class="panel avatar-panel">
+        <h2>Your Hero</h2>
+        <div class="avatar" id="avatar" aria-label="avatar">
+          <div class="avatar-face">🙂</div>
+        </div>
+        <div class="level-row">
+          <span id="levelLabel">Lvl 1</span>
+          <div class="bar xp-bar" aria-label="XP">
+            <div class="bar-fill" id="xpFill" style="width:0%"></div>
+          </div>
+        </div>
+        <button id="buyHatBtn" class="btn small" disabled>Buy Hat (🪙 20)</button>
+      </section>
+
+      <section class="panel budget-panel">
+        <h2>Budget</h2>
+        <form id="budgetForm" class="row">
+          <label>
+            Monthly Budget ($)
+            <input type="number" id="budgetInput" min="0" step="1" placeholder="1000" />
+          </label>
+          <label>
+            This Month Spent ($)
+            <input type="number" id="spentInput" min="0" step="1" placeholder="0" />
+          </label>
+          <button class="btn" type="submit">Update</button>
+        </form>
+        <div class="bar budget-bar" aria-label="Budget">
+          <div class="bar-fill ok" id="budgetFill" style="width:0%"></div>
+        </div>
+        <div class="hint" id="budgetHint">Set a budget to begin.</div>
+        <canvas id="budgetChart" height="180"></canvas>
+      </section>
+
+      <section class="panel quests-panel">
+        <h2>Quests (Savings Goals)</h2>
+        <form id="questForm" class="row">
+          <input id="questName" placeholder="Emergency fund" />
+          <input id="questTarget" type="number" min="1" step="1" placeholder="Target $" />
+          <button class="btn" type="submit">Add Quest</button>
+        </form>
+        <ul id="questList" class="list"></ul>
+      </section>
+
+      <section class="panel streak-panel">
+        <h2>Weekly Challenge</h2>
+        <p class="hint">Log at least one savings update per day to keep the streak.</p>
+        <div id="streakRow" class="streak-row"></div>
+        <button id="logTodayBtn" class="btn">Log Today ✅</button>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <small>Prototype: data stored locally. No backend required.</small>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="./app.js"></script>
+  </body>
+  </html>
+
+
