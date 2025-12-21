@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import '../App.css';
 import Header from './Header';
+import Toast from './Toast';
 
 function Dashboard({ user, onLogout, onUserUpdate }) {
   const [budgetForm, setBudgetForm] = useState({ monthlyBudget: '' });
@@ -9,6 +11,7 @@ function Dashboard({ user, onLogout, onUserUpdate }) {
   const [recentGoals, setRecentGoals] = useState([]);
   const [recentTransactions, setRecentTransactions] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [toast, setToast] = useState(null);
 
   useEffect(() => {
     fetchDashboardData();
@@ -45,11 +48,11 @@ function Dashboard({ user, onLogout, onUserUpdate }) {
       const userRes = await axios.get('/auth/me');
       onUserUpdate(userRes.data);
       
-      alert('Budget updated successfully!');
+      setToast({ message: 'Budget updated successfully!', type: 'success' });
       fetchDashboardData();
     } catch (error) {
       console.error('Failed to update budget:', error);
-      alert('Failed to update budget');
+      setToast({ message: 'Failed to update budget', type: 'error' });
     }
   };
 
@@ -75,6 +78,7 @@ function Dashboard({ user, onLogout, onUserUpdate }) {
 
   return (
     <div>
+      {toast && <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />}
       <Header user={user} onLogout={onLogout} />
 
       <main className="layout">
@@ -225,11 +229,11 @@ function Dashboard({ user, onLogout, onUserUpdate }) {
         <section className="panel" style={{ gridColumn: '1 / -1' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
             <h2>Active Quests</h2>
-            <a href="/goals" className="btn small">View All</a>
+            <Link to="/goals" className="btn small">View All</Link>
           </div>
           {recentGoals.length === 0 ? (
             <p className="hint" style={{ textAlign: 'center', padding: '20px' }}>
-              No active quests. <a href="/goals" style={{ color: 'var(--accent)' }}>Create a goal!</a>
+              No active quests. <Link to="/goals" style={{ color: 'var(--accent)', textDecoration: 'none' }}>Create a goal!</Link>
             </p>
           ) : (
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '16px' }}>
@@ -253,11 +257,11 @@ function Dashboard({ user, onLogout, onUserUpdate }) {
         <section className="panel" style={{ gridColumn: '1 / -1' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
             <h2>Recent Transactions</h2>
-            <a href="/transactions" className="btn small">View All</a>
+            <Link to="/transactions" className="btn small">View All</Link>
           </div>
           {recentTransactions.length === 0 ? (
             <p className="hint" style={{ textAlign: 'center', padding: '20px' }}>
-              No transactions yet. <a href="/transactions" style={{ color: 'var(--accent)' }}>Start tracking!</a>
+              No transactions yet. <Link to="/transactions" style={{ color: 'var(--accent)', textDecoration: 'none' }}>Start tracking!</Link>
             </p>
           ) : (
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '12px' }}>

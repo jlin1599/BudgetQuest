@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../App.css';
 import Header from './Header';
+import Toast from './Toast';
 
 function Goals({ user, onLogout, onUserUpdate }) {
   const [goals, setGoals] = useState([]);
   const [newGoal, setNewGoal] = useState({ title: '', targetAmount: '', description: '', deadline: '' });
   const [filter, setFilter] = useState('active');
   const [loading, setLoading] = useState(true);
+  const [toast, setToast] = useState(null);
 
   useEffect(() => {
     fetchGoals();
@@ -27,7 +29,7 @@ function Goals({ user, onLogout, onUserUpdate }) {
   const handleCreateGoal = async (e) => {
     e.preventDefault();
     if (!newGoal.title || !newGoal.targetAmount) {
-      alert('Please provide title and target amount');
+      setToast({ message: 'Please provide title and target amount', type: 'error' });
       return;
     }
 
@@ -47,14 +49,16 @@ function Goals({ user, onLogout, onUserUpdate }) {
         onUserUpdate({ ...user, xp: response.data.user.xp, level: response.data.user.level });
       }
 
-      alert(`Quest created! +${response.data.xpGained} XP earned!`);
+      setToast({ message: `Quest created! +${response.data.xpGained} XP earned!`, type: 'success' });
 
       if (response.data.leveledUp) {
-        alert(`⬆️ Level up! You're now level ${response.data.user.level}!`);
+        setTimeout(() => {
+          setToast({ message: `⬆️ Level up! You're now level ${response.data.user.level}!`, type: 'success' });
+        }, 2000);
       }
     } catch (error) {
       console.error('Failed to create goal:', error);
-      alert('Failed to create quest');
+      setToast({ message: 'Failed to create quest', type: 'error' });
     }
   };
 
@@ -72,7 +76,7 @@ function Goals({ user, onLogout, onUserUpdate }) {
       setGoals(goals.map(g => g._id === goalId ? response.data.goal : g));
 
       if (response.data.completed) {
-        alert(`🎉 Quest completed! +${response.data.xpGained} XP, +${response.data.coinsGained} coins!`);
+        setToast({ message: `🎉 Quest completed! +${response.data.xpGained} XP, +${response.data.coinsGained} coins!`, type: 'success' });
         if (response.data.user) {
           onUserUpdate({ 
             ...user, 
@@ -82,17 +86,21 @@ function Goals({ user, onLogout, onUserUpdate }) {
           });
         }
         if (response.data.leveledUp) {
-          alert(`⬆️ Level up! You're now level ${response.data.user.level}!`);
+          setTimeout(() => {
+            setToast({ message: `⬆️ Level up! You're now level ${response.data.user.level}!`, type: 'success' });
+          }, 2000);
         }
         if (response.data.newAchievement) {
-          alert(`🏆 New achievement unlocked: ${response.data.newAchievement.title}!`);
+          setTimeout(() => {
+            setToast({ message: `🏆 New achievement unlocked: ${response.data.newAchievement.title}!`, type: 'success' });
+          }, 4000);
         }
         // Refresh to show updated status
         fetchGoals();
       }
     } catch (error) {
       console.error('Failed to update goal:', error);
-      alert('Failed to update quest progress');
+      setToast({ message: 'Failed to update quest progress', type: 'error' });
     }
   };
 
@@ -102,14 +110,16 @@ function Goals({ user, onLogout, onUserUpdate }) {
     try {
       await axios.delete(`/goals/${goalId}`);
       setGoals(goals.filter(g => g._id !== goalId));
+      setToast({ message: 'Quest deleted successfully', type: 'success' });
     } catch (error) {
       console.error('Failed to delete goal:', error);
-      alert('Failed to delete quest');
+      setToast({ message: 'Failed to delete quest', type: 'error' });
     }
   };
 
   return (
     <div>
+      {toast && <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />}
       <Header user={user} onLogout={onLogout} />
 
       <main className="layout">

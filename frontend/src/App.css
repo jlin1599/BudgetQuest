@@ -63,4 +63,16 @@ input{background:#0c1330; border:1px solid rgba(255,255,255,.1); color:var(--tex
 .app-footer{padding:12px 16px; text-align:center; color:var(--muted)}
 
 /* Press Start headings on panels */
-.avatar-panel h2,.budget-panel h2,.quests-panel h2,.streak-panel h2{font-family:"Press Start 2P", monospace; font-size:16px}  
+.avatar-panel h2,.budget-panel h2,.quests-panel h2,.streak-panel h2{font-family:"Press Start 2P", monospace; font-size:16px}
+
+/* Toast animation */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}  

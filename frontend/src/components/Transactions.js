@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../App.css';
 import Header from './Header';
+import Toast from './Toast';
 
 const EXPENSE_CATEGORIES = ['food', 'transportation', 'entertainment', 'utilities', 'shopping', 'health', 'education', 'other'];
 const INCOME_CATEGORIES = ['salary', 'freelance', 'investment', 'other'];
@@ -16,6 +17,7 @@ function Transactions({ user, onLogout, onUserUpdate }) {
   });
   const [filter, setFilter] = useState({ type: 'all', category: 'all' });
   const [summary, setSummary] = useState({ totalIncome: 0, totalExpenses: 0, balance: 0 });
+  const [toast, setToast] = useState(null);
 
   useEffect(() => {
     fetchTransactions();
@@ -43,7 +45,7 @@ function Transactions({ user, onLogout, onUserUpdate }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!newTransaction.amount || parseFloat(newTransaction.amount) <= 0) {
-      alert('Please enter a valid amount');
+      setToast({ message: 'Please enter a valid amount', type: 'error' });
       return;
     }
 
@@ -67,17 +69,15 @@ function Transactions({ user, onLogout, onUserUpdate }) {
       }
 
       if (response.data.leveledUp) {
-        alert(`⬆️ Level up! You're now level ${response.data.user.level}!`);
-      }
-
-      if (response.data.xpGained > 0) {
-        alert(`+${response.data.xpGained} XP earned!`);
+        setToast({ message: `⬆️ Level up! You're now level ${response.data.user.level}!`, type: 'success' });
+      } else if (response.data.xpGained > 0) {
+        setToast({ message: `+${response.data.xpGained} XP earned!`, type: 'success' });
       }
 
       fetchSummary();
     } catch (error) {
       console.error('Failed to create transaction:', error);
-      alert('Failed to create transaction');
+      setToast({ message: 'Failed to create transaction', type: 'error' });
     }
   };
 
@@ -87,10 +87,11 @@ function Transactions({ user, onLogout, onUserUpdate }) {
     try {
       await axios.delete(`/transactions/${id}`);
       setTransactions(transactions.filter(t => t._id !== id));
+      setToast({ message: 'Transaction deleted successfully', type: 'success' });
       fetchSummary();
     } catch (error) {
       console.error('Failed to delete transaction:', error);
-      alert('Failed to delete transaction');
+      setToast({ message: 'Failed to delete transaction', type: 'error' });
     }
   };
 
@@ -104,6 +105,7 @@ function Transactions({ user, onLogout, onUserUpdate }) {
 
   return (
     <div>
+      {toast && <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />}
       <Header user={user} onLogout={onLogout} />
 
       <main className="layout">
