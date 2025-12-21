@@ -56,7 +56,7 @@ A gamified budgeting web application that turns financial management into an RPG
    ```env
    MONGODB_URI=mongodb://localhost:27017/budgetquest
    # OR for MongoDB Atlas:
-   # MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/budgetquest
+   # MONGODB_URI=mongodb+srv://YOUR_USERNAME:YOUR_PASSWORD@YOUR_CLUSTER.mongodb.net/budgetquest
    
    JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
    PORT=5001
