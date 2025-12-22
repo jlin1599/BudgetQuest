@@ -1,26 +1,41 @@
-Budget Quest (Prototype)
-========================
+# Budget Quest 🎮💰
 
-A lightweight, front-end-only demo of the Budget Quest idea: budgeting as an RPG.
+A gamified budgeting web application that turns financial management into an RPG adventure.
 
-Included
---------
-- Avatar with level + XP bar, simple cosmetic purchase (hat)
-- Budget inputs with progress bar and rewards for staying under budget
-- Quests (savings goals) with progress, completion badge, and rewards
-- Weekly streak tracker with daily log and weekly bonus
-- LocalStorage persistence (no backend)
-- Mini bar chart of Budget vs Spent using Chart.js CDN
+## Features
 
-How to run
-----------
-1. Open `index.html` in your browser (double-click or serve locally).
-2. Set a budget and expenses; add a quest and increment progress; log daily to build a streak.
-3. Earn XP and coins; buy the avatar hat when you reach 20 coins.
+- **XP & Leveling System**: Earn experience points and level up your avatar
+- **Coins**: Earn in-game currency by completing savings goals
+- **Achievements**: Unlock achievements as you progress
+- **Budget Tracking**: Set monthly budgets and track spending
+- **Transaction Management**: Log income and expenses
+- **Savings Goals**: Create and track savings goals (quests)
 
-Notes
------
-- This is intentionally small for midterm feedback. It demonstrates mechanics and UI without a server.
-- Code is vanilla HTML/CSS/JS; a later iteration can migrate to React + Node + MongoDB.
+## Tech Stack
 
+- Frontend: React.js
+- Backend: Node.js, Express.js
+- Database: MongoDB
 
+## Getting Started
+
+### Prerequisites
+- Node.js
+- MongoDB
+
+### Installation
+
+1. Clone the repository
+2. Install backend dependencies: `cd backend && npm install`
+3. Install frontend dependencies: `cd frontend && npm install`
+4. Set up environment variables (see backend folder)
+5. Start backend: `npm start` (in backend folder)
+6. Start frontend: `npm start` (in frontend folder)
+
+## Team
+
+Anna Merkulova, Jackie Lin, Katherine Apupalo
+
+---
+
+**Level up your finances! 🎮💰**
