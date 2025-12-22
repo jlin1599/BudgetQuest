@@ -13,8 +13,8 @@ import Achievements from './components/Achievements';
 
 // Set axios defaults
 axios.defaults.baseURL = process.env.NODE_ENV === 'production' 
-  ? '/api'  // Production: relative URL
-  : 'http://localhost:5001/api';  // Development: full URL
+  ? '/api'  
+  : 'http://localhost:5001/api';  
 
 function App() {
   const [user, setUser] = useState(null);

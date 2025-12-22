@@ -16,19 +16,19 @@ app.use('/api/transactions', require('./routes/transactions'));
 app.use('/api/goals', require('./routes/goals'));
 app.use('/api/achievements', require('./routes/achievements'));
 
-// Serve static files from React build (production only)
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, 'client/build')));
-  
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-  });
-}
-
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'Budget Quest API is running' });
 });
+
+// Serve static files from React build (production only)
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, 'frontend/build')));
+  
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'frontend/build', 'index.html'));
+  });
+}
 
 // Database connection
 const connectDB = async () => {
