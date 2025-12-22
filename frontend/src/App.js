@@ -12,7 +12,9 @@ import Transactions from './components/Transactions';
 import Achievements from './components/Achievements';
 
 // Set axios defaults
-axios.defaults.baseURL = 'http://localhost:5001/api';
+axios.defaults.baseURL = process.env.NODE_ENV === 'production' 
+  ? '/api'  // Production: relative URL
+  : 'http://localhost:5001/api';  // Development: full URL
 
 function App() {
   const [user, setUser] = useState(null);
