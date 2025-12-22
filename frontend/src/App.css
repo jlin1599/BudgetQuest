@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;600;700&display=swap');
+
 :root{
   --bg:#0b1020;
   --panel:#121a35;
@@ -8,65 +10,396 @@
   --danger:#ff7575;
   --coin:#f6c945;
 }
-*{box-sizing:border-box; font-family:"Press Start 2P", monospace !important;}
+
+*{box-sizing:border-box}
 html,body{height:100%}
+
 body{
     margin:0; 
-    font-family:"Press Start 2P", monospace;
-    font-size:10px;
-    line-height:1.8;
-    letter-spacing:0.5px;
-    color:var(--text); background:radial-gradient(1200px 600px at 10% -10%,#1c2660 0%,transparent 60%),linear-gradient(180deg,#0b1020 0%,#0b0f1d 100%);
+    font-family:'Space Grotesk', sans-serif;
+    font-size:16px;
+    color:var(--text); 
+    background:radial-gradient(1200px 600px at 10% -10%,#1c2660 0%,transparent 60%),linear-gradient(180deg,#0b1020 0%,#0b0f1d 100%);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Press Start 2P", monospace;
+  line-height: 1.4;
 }
 
 .app-header{
-    display:flex; align-items:center; justify-content:space-between; padding:16px 20px; border-bottom:1px solid rgba(255,255,255,.08);
+    display:flex; 
+    align-items:center; 
+    justify-content:space-between; 
+    padding:16px 20px; 
+    border-bottom:1px solid rgba(255,255,255,.08);
 }
-.app-header h1{font-family:"Press Start 2P", monospace; font-size:20px; letter-spacing:1px; margin:0}
-.coins{background:rgba(246,201,69,.15); color:#000; font-weight:800; color:#1b1500; padding:8px 12px; border-radius:10px; box-shadow:inset 0 0 0 2px var(--coin); font-size:11px;}
 
-.layout{display:grid; gap:20px; padding:20px; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); max-width:1400px; margin:0 auto}
-.panel{background:var(--panel); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:20px; box-shadow:0 10px 30px rgba(0,0,0,.25)}
-.panel h2{margin:0 0 14px 0; font-size:14px; font-weight:800}
+.app-header h1{
+  font-family:"Press Start 2P", monospace; 
+  font-size:22px; 
+  letter-spacing:1px; 
+  margin:0;
+}
 
-.avatar{height:220px; display:flex; align-items:center; justify-content:center; background:linear-gradient(180deg,#1a2450,#0f1532); border-radius:12px; border:1px solid rgba(255,255,255,.06); position:relative}
-.avatar-face{font-size:96px}
+/* Navigation links - Press Start 2P */
+.app-header a, .app-header nav, .app-header nav a {
+  font-family: "Press Start 2P", monospace;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+
+.coins{
+  background:rgba(246,201,69,.15); 
+  color:#1b1500; 
+  font-weight:800; 
+  padding:8px 12px; 
+  border-radius:10px; 
+  box-shadow:inset 0 0 0 2px var(--coin);
+  font-family:"Press Start 2P", monospace;
+  font-size:12px;
+}
+
+.layout{
+  display:grid; 
+  gap:20px; 
+  padding:20px; 
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); 
+  max-width:1400px; 
+  margin:0 auto;
+}
+
+/* Glassmorphsm panel with pixel borderes */
+.panel{
+  background: rgba(18, 26, 53, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 2px solid transparent;
+  border-image: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 50%, var(--coin) 100%) 1;
+  border-radius:16px; 
+  padding:20px; 
+  box-shadow: 
+    0 8px 32px 0 rgba(0, 0, 0, 0.37),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+  position: relative;
+}
+
+/* Pixel art corners on panels */
+.panel::before,
+.panel::after {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: var(--accent);
+  box-shadow: 0 0 12px var(--accent);
+  z-index: 1;
+}
+
+.panel::before {
+  top: -2px;
+  left: -2px;
+  border-top-left-radius: 2px;
+}
+
+.panel::after {
+  bottom: -2px;
+  right: -2px;
+  border-bottom-right-radius: 2px;
+}
+
+.panel h2{
+  margin:0 0 14px 0; 
+  font-size:16px; 
+  font-weight:800;
+  font-family:"Press Start 2P", monospace;
+  line-height:1.4;
+}
+
+/* RPG style character card */
+.avatar{
+  height:220px; 
+  display:flex; 
+  align-items:center; 
+  justify-content:center; 
+  background: 
+    linear-gradient(135deg, #1a2450 0%, #0f1532 100%),
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(93, 214, 164, 0.03) 10px,
+      rgba(93, 214, 164, 0.03) 20px
+    );
+  border-radius:12px; 
+  border: 3px solid var(--accent);
+  box-shadow: 
+    inset 0 0 30px rgba(93, 214, 164, 0.1),
+    0 0 20px rgba(93, 214, 164, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated shine effect on avatar */
+.avatar::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 70%
+  );
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+.avatar-face{
+  font-size:96px;
+  position: relative;
+  z-index: 1;
+}
 
 .row{display:flex; gap:10px; flex-wrap:wrap}
-label{display:flex; flex-direction:column; gap:6px; font-size:11px; color:var(--muted)}
-input{background:#0c1330; border:1px solid rgba(255,255,255,.1); color:var(--text); padding:12px 14px; border-radius:10px; min-width:200px; font-size:10px;}
 
-.btn{background:linear-gradient(180deg,var(--accent),#3bbd8f); color:#00130c; font-weight:800; border:none; padding:14px 18px; border-radius:10px; cursor:pointer; font-size:10px;}
-.btn.small{padding:10px 12px; font-size:9px}
+label{
+  display:flex; 
+  flex-direction:column; 
+  gap:6px; 
+  font-size:14px; 
+  color:var(--muted);
+  font-family:'Space Grotesk', sans-serif;
+}
+
+input{
+  background:rgba(12, 19, 48, 0.8);
+  backdrop-filter: blur(5px);
+  border:1px solid rgba(255,255,255,.1); 
+  color:var(--text); 
+  padding:12px 14px; 
+  border-radius:10px; 
+  min-width:200px;
+  font-family:'Space Grotesk', sans-serif;
+  font-size:15px;
+}
+
+.btn{
+  background:linear-gradient(180deg,var(--accent),#3bbd8f); 
+  color:#00130c; 
+  font-weight:800; 
+  border:none; 
+  padding:12px 16px; 
+  border-radius:10px; 
+  cursor:pointer;
+  font-family:"Press Start 2P", monospace;
+  font-size:11px;
+  letter-spacing:0.5px;
+}
+
+.btn.small{padding:10px 12px; font-size:10px}
 .btn:disabled{opacity:.5; cursor:not-allowed}
 
-.bar{height:18px; background:#0b1435; border:1px solid rgba(255,255,255,.1); border-radius:999px; overflow:hidden; box-shadow:inset 0 2px 8px rgba(0,0,0,.4)}
-.bar-fill{height:100%; width:0%; transition:width .35s ease; background:linear-gradient(90deg,var(--accent-2),#52e3c2)}
-.budget-bar .bar-fill.ok{background:linear-gradient(90deg,#75ffb2,#2ad38b)}
-.budget-bar .bar-fill.warn{background:linear-gradient(90deg,#ffd275,#ff9f43)}
-.budget-bar .bar-fill.bad{background:linear-gradient(90deg,#ff8a8a,#ff4d4d)}
+/* Neon glow xp bar */
+.bar{
+  height:18px; 
+  background: #0b1435;
+  border: 2px solid var(--accent-2);
+  border-radius:999px; 
+  overflow:hidden; 
+  box-shadow: 
+    inset 0 2px 8px rgba(0, 0, 0, 0.8),
+    0 0 10px rgba(122, 162, 255, 0.3);
+}
+
+.bar-fill{
+  height:100%; 
+  width:0%; 
+  transition:width .35s ease; 
+  background: linear-gradient(90deg, var(--accent-2), #52e3c2);
+  box-shadow: 
+    0 0 20px rgba(82, 227, 194, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { 
+    filter: brightness(1); 
+    box-shadow: 0 0 20px rgba(82, 227, 194, 0.6);
+  }
+  50% { 
+    filter: brightness(1.2); 
+    box-shadow: 0 0 30px rgba(82, 227, 194, 0.8);
+  }
+}
+
+/* Budget progress bar variations with glow */
+.budget-bar .bar{
+  border-color: var(--accent);
+  box-shadow: 
+    inset 0 2px 8px rgba(0, 0, 0, 0.8),
+    0 0 10px rgba(93, 214, 164, 0.3);
+}
+
+.budget-bar .bar-fill.ok{
+  background:linear-gradient(90deg,#75ffb2,#2ad38b);
+  box-shadow: 
+    0 0 20px rgba(42, 211, 139, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.budget-bar .bar-fill.warn{
+  background:linear-gradient(90deg,#ffd275,#ff9f43);
+  box-shadow: 
+    0 0 20px rgba(255, 159, 67, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.budget-bar .bar-fill.bad{
+  background:linear-gradient(90deg,#ff8a8a,#ff4d4d);
+  box-shadow: 
+    0 0 20px rgba(255, 77, 77, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
 
 .level-row{display:flex; align-items:center; gap:12px; margin-top:14px}
-#levelLabel{font-weight:800; font-size:11px;}
 
-.hint{color:var(--muted); font-size:9px; margin-top:8px}
+#levelLabel{
+  font-weight:800;
+  font-family:"Press Start 2P", monospace;
+  font-size:13px;
+}
 
-.list{list-style:none; padding:0; margin:10px 0 0 0; display:flex; flex-direction:column; gap:10px}
-.quest-item{display:grid; grid-template-columns:1fr auto; gap:12px; align-items:center; background:#0c1330; border:1px solid rgba(255,255,255,.08); padding:12px; border-radius:10px}
+.hint{
+  color:var(--muted); 
+  font-size:13px; 
+  margin-top:8px;
+  font-family:'Space Grotesk', sans-serif;
+}
+
+.list{
+  list-style:none; 
+  padding:0; 
+  margin:10px 0 0 0; 
+  display:flex; 
+  flex-direction:column; 
+  gap:10px;
+}
+
+.quest-item{
+  display:grid; 
+  grid-template-columns:1fr auto; 
+  gap:12px; 
+  align-items:center; 
+  background:rgba(12, 19, 48, 0.6);
+  backdrop-filter: blur(5px);
+  border:1px solid rgba(255,255,255,.08); 
+  padding:12px; 
+  border-radius:10px;
+}
+
 .quest-top{display:flex; flex-direction:column}
-.quest-name{font-weight:800; font-size:11px;}
+
+.quest-name{
+  font-weight:800;
+  font-family:"Press Start 2P", monospace;
+  font-size:12px;
+}
+
 .quest-controls{display:flex; align-items:center; gap:8px}
-.quest-controls input{width:110px; font-size:10px;}
-.quest-badge{font-size:9px; color:#111; background:linear-gradient(180deg,#ffe98a,#f6c945); padding:2px 6px; border-radius:6px}
+.quest-controls input{width:110px}
 
-.streak-row{display:grid; grid-template-columns:repeat(7,1fr); gap:8px; margin:10px 0}
-.streak-dot{height:22px; border-radius:6px; background:#0c1330; border:1px solid rgba(255,255,255,.1)}
-.streak-dot.on{background:linear-gradient(180deg,#a2ff80,#59e884)}
+.quest-badge{
+  font-size:10px; 
+  color:#111; 
+  background:linear-gradient(180deg,#ffe98a,#f6c945); 
+  padding:2px 6px; 
+  border-radius:6px;
+  font-family:"Press Start 2P", monospace;
+}
 
-.app-footer{padding:12px 16px; text-align:center; color:var(--muted); font-size:9px;}
+.streak-row{
+  display:grid; 
+  grid-template-columns:repeat(7,1fr); 
+  gap:8px; 
+  margin:10px 0;
+}
 
-/* Press Start headings on panels */
-.avatar-panel h2,.budget-panel h2,.quests-panel h2,.streak-panel h2{font-family:"Press Start 2P", monospace; font-size:14px}
+.streak-dot{
+  height:22px; 
+  border-radius:6px; 
+  background:rgba(12, 19, 48, 0.6);
+  backdrop-filter: blur(5px);
+  border:1px solid rgba(255,255,255,.1);
+}
+
+.streak-dot.on{
+  background:linear-gradient(180deg,#a2ff80,#59e884);
+  box-shadow: 
+    0 0 15px rgba(89, 232, 132, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.app-footer{
+  padding:12px 16px; 
+  text-align:center; 
+  color:var(--muted);
+  font-family:'Space Grotesk', sans-serif;
+}
+
+.stat-value, .amount, .balance {
+  font-family:"Press Start 2P", monospace;
+}
+
+.budget-panel {
+  grid-column: 1 / -1; 
+  align-items: center; 
+  max-width: 3000px;     
+  margin: 0 auto;       
+}
+
+.budget-panel h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.budget-panel .row {
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.budget-panel label {
+  align-items: center;
+  text-align: center;
+}
+
+.budget-panel input {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 700;
+  padding: 16px;
+  width: 220px;
+  min-width: auto;
+}
+
+.budget-panel .bar {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.budget-panel .hint {
+  text-align: center;
+  margin-top: 12px;
+}
 
 /* Toast animation */
 @keyframes slideIn {
