@@ -33,6 +33,21 @@ h1, h2, h3, h4, h5, h6 {
     justify-content:space-between; 
     padding:16px 20px; 
     border-bottom:1px solid rgba(255,255,255,.08);
+    flex-wrap: wrap;
+}
+
+.app-header nav {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex: 1;
+  margin-left: 40px;
+}
+
+.header-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
 }
 
 .app-header h1{
@@ -410,5 +425,209 @@ input{
   to {
     transform: translateX(0);
     opacity: 1;
+  }
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+
+  .app-header {
+    flex-wrap: wrap;
+    padding: 12px 16px;
+    gap: 12px;
+  }
+
+  .app-header h1 {
+    font-size: 16px;
+    flex: 1 1 100%;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+
+  .app-header nav {
+    flex: 1 1 100%;
+    justify-content: center;
+    margin-left: 0;
+    margin-top: 8px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .app-header nav a {
+    font-size: 10px;
+    padding: 6px 8px;
+  }
+
+  .header-actions {
+    flex: 1 1 100%;
+    justify-content: center;
+    margin-top: 8px;
+  }
+
+  .coins {
+    font-size: 10px;
+    padding: 6px 10px;
+  }
+
+  .layout {
+    padding: 12px;
+    gap: 12px;
+    grid-template-columns: 1fr;
+  }
+
+  .panel {
+    padding: 16px;
+    border-radius: 12px;
+  }
+
+  .panel h2 {
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+
+  .avatar {
+    height: 160px;
+  }
+
+  .avatar-face {
+    font-size: 64px;
+  }
+
+  input {
+    min-width: 100%;
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+
+  .row {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .row label {
+    width: 100%;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 10px;
+  }
+
+  .btn.small {
+    font-size: 9px;
+    padding: 8px 10px;
+  }
+
+  .level-row {
+    flex-direction: column;
+    gap: 8px;
+    align-items: stretch;
+  }
+
+  #levelLabel {
+    text-align: center;
+    font-size: 11px;
+  }
+
+  .quest-item {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .quest-controls {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .quest-controls input {
+    width: 100%;
+  }
+
+  .budget-panel input {
+    font-size: 20px;
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .hint {
+    font-size: 12px;
+  }
+
+  .streak-row {
+    gap: 6px;
+  }
+
+  .streak-dot {
+    height: 18px;
+  }
+
+  /* Responsive stat values */
+  .stat-large {
+    font-size: 32px !important;
+  }
+
+  .stat-medium {
+    font-size: 24px !important;
+  }
+
+  .stat-padding {
+    padding: 12px 0 !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .stat-large {
+    font-size: 28px !important;
+  }
+
+  .stat-medium {
+    font-size: 20px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-header h1 {
+    font-size: 14px;
+  }
+
+  .app-header nav a {
+    font-size: 9px;
+    padding: 5px 6px;
+  }
+
+  .layout {
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .panel {
+    padding: 12px;
+  }
+
+  .panel h2 {
+    font-size: 12px;
+  }
+
+  .avatar {
+    height: 140px;
+  }
+
+  .avatar-face {
+    font-size: 56px;
+  }
+
+  .btn {
+    font-size: 9px;
+    padding: 8px 12px;
+  }
+
+  .coins {
+    font-size: 9px;
+    padding: 5px 8px;
   }
 }

@@ -12,14 +12,12 @@ function Header({ user, onLogout }) {
   return (
     <header className="app-header">
       <h1>Budget Quest</h1>
-      <nav style={{ display: 'flex', gap: '16px', alignItems: 'center', flex: 1, marginLeft: '40px' }}>
+      <nav>
         <Link 
           to="/" 
           style={{ 
             color: isActive('/') ? 'var(--accent)' : 'var(--text)', 
             textDecoration: 'none', 
-            fontWeight: '600', 
-            fontSize: '14px',
             borderBottom: isActive('/') ? '2px solid var(--accent)' : 'none',
             paddingBottom: '2px'
           }}
@@ -31,8 +29,6 @@ function Header({ user, onLogout }) {
           style={{ 
             color: isActive('/goals') ? 'var(--accent)' : 'var(--text)', 
             textDecoration: 'none', 
-            fontWeight: '600', 
-            fontSize: '14px',
             borderBottom: isActive('/goals') ? '2px solid var(--accent)' : 'none',
             paddingBottom: '2px'
           }}
@@ -44,8 +40,6 @@ function Header({ user, onLogout }) {
           style={{ 
             color: isActive('/transactions') ? 'var(--accent)' : 'var(--text)', 
             textDecoration: 'none', 
-            fontWeight: '600', 
-            fontSize: '14px',
             borderBottom: isActive('/transactions') ? '2px solid var(--accent)' : 'none',
             paddingBottom: '2px'
           }}
@@ -57,8 +51,6 @@ function Header({ user, onLogout }) {
           style={{ 
             color: isActive('/achievements') ? 'var(--accent)' : 'var(--text)', 
             textDecoration: 'none', 
-            fontWeight: '600', 
-            fontSize: '14px',
             borderBottom: isActive('/achievements') ? '2px solid var(--accent)' : 'none',
             paddingBottom: '2px'
           }}
@@ -66,12 +58,12 @@ function Header({ user, onLogout }) {
           Achievements
         </Link>
       </nav>
-      <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+      <div className="header-actions">
         <div className="coins">🪙 {user?.coins || 0}</div>
         <button 
           onClick={onLogout} 
           className="btn small"
-          style={{ background: 'var(--danger)', fontSize: '12px' }}
+          style={{ background: 'var(--danger)' }}
         >
           Logout
         </button>
